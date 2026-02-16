@@ -10,19 +10,21 @@
   background-color: var(--page-bg-color, #495382);
   font-family: var(--font-family, 'IBM Plex mono', sans-serif);
   font-size: var(--main-font-size, 18px); 
-  font-weight: normal;
+  font-weight: var(--normal-font-weight, 400);
 }
+
+/* ШАПКА */
 
 .header {
   block-size: 100vh;
-  min-block-size: 768px; /*или 668px???*/
+  min-block-size: 768px; /*!!!!! 375 высота поменяется на 668*/
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
   grid-template-columns: 1fr;
   position: relative;
   /*для того чтобы спозиционировать REC и уголок*/
-  padding-block: 20px;
-  padding-inline: 20px;
+  padding-block: var(--padding-M, 20px);
+  padding-inline: var(--padding-M, 20px);
 }
 
 /*REC*/
@@ -96,14 +98,15 @@
 .header__theme-menu-item {
   line-height: 100%;
   color: var(--accent-color, #ff0070);
-  text-transform: lowercase;
 }
 
 .header__theme-menu-button {
-  all: unset;
-  /*Почему то есть тень у кнопок, проверить outline!!! box-shadow: none не работает*/
+  border: none;
   background-color: transparent;
   padding: 0 13px;
+  text-transform: lowercase;
+  min-inline-size: 70px;
+  min-block-size: 26px;
 }
 
 .header__title {
@@ -111,8 +114,8 @@
   align-self: center;
   font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem); 
   /*чтобы шрифт адаптировался */
-  font-weight: bold;
-  line-height: 83%; /*82.5%*/
+  font-weight: var(--bold-font-weight, 700);
+  line-height: var(--title-line-height, 83%); /*82.5%*/
   color: var(--title-color, #db00ff);
   text-shadow: 4px 4px 0 var(--accent-color, #ff0070);
   margin-inline-start: -20px; /*чтобы подогнать под макет*/
@@ -122,23 +125,224 @@
   justify-self: end;
   align-self: center;
   width: 50%;
-  font-weight: bold;
-  line-height: 130%;
+  font-weight: var(--bold-font-weight, 700);
+  line-height: var(--text-line-height, 130%);
   font-size: var(--main-font-size, 18px);
 }
 
 .title-decor {
   background-color: var(--accent-color, #ff0070);
-  color: var(--subtitle-color, #000028);
+  color: var(--common-dark-color, #000028);
+}
+
+/*ОСНОВНОЙ КОНТЕНТ*/
+
+.content {
+  padding-block: var(--padding-L, 60px);
+   /*!!!! поменяется на 375 40px*/
+  padding-inline: var(--padding-M, 20px);
+  background-color: var(--common-dark-color, #000028);
+  display: grid;
+  gap: 80px; /*между секциями 80px*/
+}
+
+.content__section {
+  color: var(--main-text-color, #F1B2CE);
+  line-height: var(--text-line-height, 130%);
+}
+
+.content__section-title {
+  font-size: var(--main-font-size, 18px);
+  font-weight: var(--bold-font-weight, 700);
+  line-height: var(--text-line-height, 130%);
+  color: var(--accent-color, #ff0070);
+  padding-block-end: var(--padding-M, 20px); 
+  /* чтобы на маленьком экране сохранился отступ */
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 
+/*ПЕРВАЯ СЕКЦИЯ и Третья*/
+.content__section.section-primary {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  grid-template-columns: 32% 1fr; /*но ломается на 768*/
+  gap: 20px;
+}
+
+.section-primary .content__section-title {
+  grid-column: 1;
+}
+
+.section-primary .cards-list {
+  grid-column: 2 / -1; /* 2/4 */
+}
+
+/*ВТОРАЯ СЕКЦИЯ*/
+.content__section.section-secondary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.section-secondary .content__section-title {
+  grid-column: 1;
+}
+
+.section-secondary .cards-list {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/*ТРЕТЬЯ СЕКЦИЯ*/
+.card__subtitle--with-margin-bottom {
+  margin-block-end: 19px; 
+  /*макет 20px !!!!! проверить, а то сьезжает немного текст и секция ниже*/
+}
 
 
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-/*
+.card__subtitle {
+  font-size: var(--main-font-size, 18px);
+  font-weight: var(--bold-font-weight, 700);
+  line-height: var(--text-line-height, 130%);
+}
+
+.subtitle-decor {
+  font-weight: var(--normal-font-weight, 400);
+}
+
+.card-link {
+  text-shadow: 2px 2px 0 var(--accent-color, #ff0070);
+  text-decoration: none;
+}
+
+.card-link:hover {
+  border-bottom: 1px solid currentColor;
+}
+
+.card-link:focus-visible {
+  outline: 1px solid currentColor;
+  /*если задаю border - странно отображается*/
+}
+
+/*ЧЕТВЕРТАЯ СЕКЦИЯ КАРТИНКИ*/
+.section-images {
+  display: grid;
+  gap: 20px; /* !!!!если подзаголовку поствлю пэддинг ботом то надо убрать*/
+  grid-template-columns: 1fr;
+}
+.images-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, min-content);
+  gap: 20px;
+  grid-auto-flow: dense;
+}
+
+.images-list-item {
+  inline-size: 100%;
+  block-size: 100%;
+  max-block-size: 100%;
+  object-fit: cover;
+}
+
+.images-list-item:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1 / 3;
+}
+
+.images-list-item:nth-child(2) {
+  grid-row: 1 / 3;
+  grid-column: 3;
+}
+
+.images-list-item:nth-child(3) {
+  grid-row: 2 / 4;
+  grid-column: 1;
+}
+
+.images-list-item:nth-child(4) {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.images-list-item:nth-child(5) {
+  grid-row: 3;
+  grid-column: 2 / 4;
+}
+
+
 .footer {
-  position: relative; для декор уголка
-  padding-block: 20px;
+  position: relative; 
+  /* для декор уголка */
+  padding-block: var(--padding-M, 20px);
+  padding-inline: var(--padding-M, 20px);
+
+  block-size: 100vh;
+  min-block-size: 768px;
+  background-color: var(--common-dark-color, #000028);
+
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  
 } 
 
+.footer__title {
+  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem); 
+  /*чтобы шрифт адаптировался */
+  font-weight: var(--bold-font-weight, 700);
+  line-height: var(--title-line-height, 83%); /*82.5%*/
+  color: var(--title-color, #db00ff);
+  text-shadow: 2px 2px 0 var(--accent-color, #ff0070);
+}
+
+/*стили для планшетов 768*1024*/
+
+@media (max-width: 768px) {
+
+  .header__theme-menu {
+    justify-self: end;
+    align-self: center;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: column;
+  }
+
+  .header__title {
+    font-size: clamp(7.25rem, 6.7836rem + 1.4925vw, 7.5rem);
+  }
+  
+  .content__section.section-primary {
+    grid-template-columns: 236px 1fr; 
+    /*меняю 1ую колонку с 32% на 236px иначе все ломается на десктопе*/
+  }
+
+  .section-secondary .content__section-title {
+    max-inline-size: 236px; /*чтобы как в макете*/
+  }
+
+  .section-secondary .cards-list {
+    grid-template-columns: 1fr;
+  }
+   
+}
+
+/*Стили для мобильных 375*668 и меньше*/
+
+@media (max-width: 500px) {
+
+}

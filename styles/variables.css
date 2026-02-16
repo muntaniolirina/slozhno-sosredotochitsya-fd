@@ -7,10 +7,19 @@
   
   --font-family: 'IBM Plex mono', sans-serif;
   --main-font-size: 18px;
+  --normal-font-weight: normal;
+  --bold-font-weight: bold;
+  --title-line-height: 82.5%;
+  --text-line-height: 130%;
+
   --page-bg-color: #495382;
   --accent-color: #ff0070;
-  --titile-color: #db00ff;
-  --subtitle-color: #000028;
-
+  --title-color: #db00ff;
+  
+  --common-dark-color : #000028;
+  --main-text-color: #F1B2CE;
+  
+  --padding-M: 20px;
+  --padding-L: 60px;
   
 }
