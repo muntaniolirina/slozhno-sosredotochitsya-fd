@@ -9,7 +9,7 @@
   background-attachment: fixed;
   background-color: var(--page-bg-color, #495382);
   font-family: var(--font-family, 'IBM Plex mono', sans-serif);
-  font-size: var(--main-font-size, 18px); 
+  font-size: var(--main-font-size, 18px);
   font-weight: var(--normal-font-weight, 400);
 }
 
@@ -89,7 +89,7 @@
   align-self: start;
 }
 
-.header__theme-menu-list{
+.header__theme-menu-list {
   display: flex;
   flex-direction: row; /*!!!!поменяется в др разрешениях column*/
   gap: 10px;
@@ -206,7 +206,6 @@
   /*макет 20px !!!!! проверить, а то сьезжает немного текст и секция ниже*/
 }
 
-
 .card {
   display: flex;
   flex-direction: column;
@@ -283,7 +282,6 @@
   grid-column: 2 / 4;
 }
 
-
 .footer {
   position: relative; 
   /* для декор уголка */
@@ -313,6 +311,10 @@
 
 @media (max-width: 768px) {
 
+  .header {
+    min-block-size: 1024px;
+  }
+
   .header__theme-menu {
     justify-self: end;
     align-self: center;
@@ -338,6 +340,10 @@
   .section-secondary .cards-list {
     grid-template-columns: 1fr;
   }
+
+  .footer {
+    min-block-size: 1024px;
+  }
    
 }
 
@@ -345,4 +351,85 @@
 
 @media (max-width: 500px) {
 
+  .header {
+    padding-block: var(--padding-S, 10px);
+    padding-inline: var(--padding-S, 10px);
+    min-block-size: 668px;
+  }
+
+  /*REC*/
+  .header__decorative-text {
+    top: 10px;
+    right: 19px;
+  }
+
+  /* правый верхний уголок */
+  .decorated-zone::before {
+    top: 10px;
+    right: 10px;
+  }
+
+  /* левый нижний уголок */
+  .decorated-zone::after {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .header__title {
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+    margin-inline-start: 0;
+  }
+
+  .header__subtitle {
+    width: 100%;
+  }
+
+  .content {
+    padding-block: 40px;
+    padding-inline: var(--padding-S, 10px);
+    gap: 50px;
+  }
+
+  .content__section.section-primary {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .section-primary .cards-list {
+    grid-column: 1;
+  }
+
+  .content__section.section-secondary {
+    grid-template-columns: 1fr;
+  }
+
+  .section-secondary .content__section-title {
+    max-inline-size: 100%;
+  }
+
+  .section-images {
+    gap: 10px;
+  }
+
+  .images-list {
+    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto; /*0 - можно ли такое значение?*/
+  }
+
+  /*более специфичный селектор, чтобы не перечислять все :nth-child*/
+  .images-list .images-list-item {
+    grid-row: auto;
+    grid-column: 1;
+  }
+
+  .footer {
+    min-block-size: 668px;
+    padding-block: var(--padding-S, 10px);
+    padding-inline: var(--padding-S, 10px);
+}
+
+  .footer__title {
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  }
 }
