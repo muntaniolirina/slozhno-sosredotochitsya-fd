@@ -3,7 +3,7 @@
   и их переопределение под различные устройства
 */
 :root {
-  --page-bg-image: url('../images/cover-image.png');
+  --page-bg-image: url('../images/cover-image-dark.png');
   
   --font-family: 'IBM Plex mono', sans-serif;
   --main-font-size: 18px;
@@ -12,15 +12,31 @@
   --title-line-height: 82.5%;
   --text-line-height: 130%;
 
-  --page-bg-color: #495382;
-  --accent-color: #ff0070;
-  --title-color: #db00ff;
-  
-  --common-dark-color : #000028;
-  --main-text-color: #F1B2CE;
-  
+  --decoration-cordinate: 10px;
+  --decoration-cordinate-M: 20px;
+
   --padding-S: 10px;
   --padding-M: 20px;
+  --padding-ML: 40px;
   --padding-L: 60px;
+
+  --small-gap: 10px;
+  --medium-gap: 20px;
+  --large-gap: 40px;
+  --x-large-gap: 50px;
+  --xx-large-gap: 80px;
+
+  --full-viewport-height: 100vh;
+  --dot-decorative-size: 9px;
+
+  --page-bg-color: rgba(0, 0, 40, 1);
+  --main-title-color: rgba(219, 0, 255, 1);
+  --accent-color: rgba(255, 0, 112, 1);
+  --main-text-color: rgba(241, 178, 206, 1);
+  --hover-current-color: rgba(255, 0, 112, 0.4);
+  --theme-button-color: rgba(255, 0, 112, 1);
+  --sub-title-color: rgba(0, 0, 40, 1);
+  --section-title-color: rgba(255, 0, 112, 1);
   
+  --rec-display: block;
 }
