@@ -1,10 +1,10 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
 .page {
-  font-family: var(--font-family, "IBM Plex mono", sans-serif);
-  font-weight: var(--normal-font-weight, 400);
-  font-size: var(--main-font-size, 18px);
-  background-color: var(--page-bg-color, #000028);
+  font-family: var(--font-family-main, "IBM Plex mono", sans-serif);
+  font-weight: var(--font-weight-light, 400);
+  font-size: var(--font-size-s, 18px);
+  background-color: var(--page-bg-color, rgba(0, 0, 40, 1));
   background-image: var(--page-bg-image);
   background-repeat: no-repeat;
   background-position: center;
@@ -19,21 +19,21 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content 1fr;
-  padding-inline: var(--padding-M, 20px);
-  padding-block: var(--padding-M, 20px);
-  block-size: var(--full-viewport-height, 100vh);
+  padding-inline: var(--spacing-m, 20px);
+  padding-block: var(--spacing-m, 20px);
+  block-size: 100vh;
   min-block-size: 768px;
 }
 
 /*REC*/
 .header__decorative-text {
   position: absolute;
-  top: var(--decoration-cordinate-M, 20px);
-  right: calc(var(--decoration-cordinate-M, 20px) + var(--dot-decorative-size, 9px));
+  top: 20px;
+  right: 29px;
   z-index: 9999;
   display: var(--rec-display, block);
   color: var(--accent-color, #ff0070);
-  font-size: var(--main-font-size, 18px);
+  font-size: var(--font-size-s, 18px);
   line-height: 25px;
   text-align: center;
   text-transform: uppercase;
@@ -44,8 +44,8 @@
   content: "";
   z-index: 9999;
   display: inline-block;
-  width: var(--dot-decorative-size, 9px);
-  height: var(--dot-decorative-size, 9px);
+  width: 9px;
+  height: 9px;
   margin-inline-start: 10px;
   border-radius: 100%;
   vertical-align: 0.1em; /*чтобы точка стала по центру REC*/
@@ -69,18 +69,18 @@
 
 /* правый верхний уголок */
 .decorated-zone::before {
-  top: var(--decoration-cordinate-M, 20px);
-  right: var(--decoration-cordinate-M, 20px);
-  border-inline-end: 1px solid var(--theme-button-color, rgba(255, 0, 112));
-  border-block-start: 1px solid var(--theme-button-color, rgba(255, 0, 112));
+  top: 20px;
+  right: 20px;
+  border-inline-end: 1px solid var(--button-color, rgba(255, 0, 112, 1));
+  border-block-start: 1px solid var(--button-color, rgba(255, 0, 112, 1));
 }
 
 /* левый нижний уголок */
 .decorated-zone::after {
-  bottom: var(--decoration-cordinate-M, 20px);
-  left: var(--decoration-cordinate-M, 20px);
-  border-inline-start: 1px solid var(--theme-button-color, rgba(255, 0, 112));
-  border-block-end: 1px solid var(--theme-button-color, rgba(255, 0, 112));
+  bottom: 20px;
+  left: 20px;
+  border-inline-start: 1px solid var(--button-color, rgba(255, 0, 112, 1));
+  border-block-end: 1px solid var(--button-color, rgba(255, 0, 112, 1));
 }
 
 .header__theme-menu {
@@ -91,7 +91,7 @@
 .header__theme-menu-list {
   display: flex;
   flex-direction: row;
-  gap: var(--small-gap, 10px);
+  gap: var(--grid-gap-s, 10px);
 }
 
 .header__theme-menu-item {
@@ -101,12 +101,13 @@
 .header__theme-menu-button {
   border: none;
   padding: 0 13px;
-  color: var(--theme-button-color, rgba(255, 0, 112));
+  color: var(--button-color, rgba(255, 0, 112, 1));
   text-transform: lowercase;
   background-color: transparent;
   inline-size: 70px;
   /*min-inline-size увеличивает кнопку*/
   min-block-size: 26px;
+  cursor: pointer;
 }
 
 .header__theme-menu-button_active {
@@ -120,19 +121,22 @@
 }
 
 .header__theme-menu-button:hover {
-  outline: 1px solid var(--hover-current-color, rgba(255, 0, 112, 0.4));
+  outline: 1px solid var(--accent-hover-color, rgba(255, 0, 112, 0.4));
   /*не border чтобы не влиял на границы*/
+}
+
+.title-accent {
+  color: var(--main-title-color, rgba(219, 0, 255, 1));
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-size-xl, 157px);
+  /*чтобы шрифт адаптировался */
+  line-height: var(--line-height-s, 83%);
 }
 
 .header__title {
   justify-self: start;
   align-self: center;
   margin-inline-start: -20px; /*чтобы подогнать под макет*/
-  color: var(--main-title-color, rgba(219, 0, 255, 1));
-  /*чтобы шрифт адаптировался */
-  font-weight: var(--bold-font-weight, 700);
-  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-  line-height: var(--title-line-height, 83%);
   text-shadow: 4px 4px 0 var(--accent-color, rgba(255, 0, 112, 1));
 }
 
@@ -141,9 +145,9 @@
   align-self: center;
   width: 49.9%;
   /*хорошо выглядит на десктопе, плохо на планшете. если 50% то ширина 492px, а нужно 491px */
-  font-weight: var(--bold-font-weight, 700);
-  font-size: var(--main-font-size, 18px);
-  line-height: var(--text-line-height, 130%);
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-size-s, 18px);
+  line-height: var(--line-height-m, 130%);
 }
 
 .title-decor {
@@ -154,37 +158,36 @@
 /*ОСНОВНОЙ КОНТЕНТ*/
 .content {
   display: grid;
-  gap: var(--xx-large-gap, 80px);
-  padding-inline: var(--padding-M, 20px);
-  padding-block: var(--padding-L, 60px);
-  background-color: var(--page-bg-color, rgba(0, 0, 40, 1));
+  gap: var(--grid-gap-xxl, 80px);
+  padding-inline: var(--spacing-m, 20px);
+  padding-block: var(--spacing-xl, 60px);
 }
 
 .content__section {
-  color: var(--main-text-color, rgba(241, 178, 206, 1));
-  line-height: var(--text-line-height, 130%);
+  color: var(--text-color, rgba(241, 178, 206, 1));
+  line-height: var(--line-height-m, 130%);
 }
 
 .content__section-title {
-  padding-block-end: var(--padding-M, 20px);
-  color: var(--section-title-color, rgba(255, 0, 112, 1));
-  font-weight: var(--bold-font-weight, 700);
-  font-size: var(--main-font-size, 18px);
-  line-height: var(--text-line-height, 130%);
+  padding-block-end: var(--spacing-m, 20px);
   /* чтобы на маленьком экране сохранился отступ */
+  color: var(--section-title-color, rgba(255, 0, 112, 1));
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-size-s, 18px);
+  line-height: var(--line-height-m, 130%);
 }
 
 .cards-list {
   display: flex;
   flex-direction: column;
-  gap: var(--medium-gap, 20px);
+  gap: var(--grid-gap-m, 20px);
 }
 
 /*ПЕРВАЯ СЕКЦИЯ и Третья*/
 .content__section.section-primary {
   display: grid;
   grid-template-columns: 32% 1fr;
-  gap: var(--medium-gap, 20px);
+  gap: var(--grid-gap-m, 20px);
 }
 
 .section-primary .content__section-title {
@@ -209,7 +212,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / -1;
-  gap: var(--medium-gap, 20px);
+  gap: var(--grid-gap-m, 20px);
 }
 
 /*ТРЕТЬЯ СЕКЦИЯ*/
@@ -220,17 +223,17 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--small-gap, 10px);
+  gap: var(--grid-gap-s, 10px);
 }
 
 .card__subtitle {
-  font-weight: var(--bold-font-weight, 700);
-  font-size: var(--main-font-size, 18px);
-  line-height: var(--text-line-height, 130%);
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-size-s, 18px);
+  line-height: var(--line-height-m, 130%);
 }
 
 .subtitle-decor {
-  font-weight: var(--normal-font-weight, 400);
+  font-weight: var(--font-weight-light, 400);
 }
 
 .card-link {
@@ -251,20 +254,29 @@
 .section-images {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--medium-gap, 20px);
+  gap: var(--grid-gap-m, 20px);
 }
+
 .images-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, min-content);
   grid-auto-flow: dense;
-  gap: var(--medium-gap, 20px);
+  gap: var(--grid-gap-m, 20px);
+  margin-block: 0; /* сброс браузерных отступов*/
+  padding-inline: 0; /* сброс браузерных отступов*/
 }
 
 .images-list-item {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  /*сделала флексом чтобы отцентрировать изображение внутри*/
+}
+
+.image-item {
   object-fit: cover;
-  inline-size: 100%;
-  block-size: 100%;
+  min-inline-size: 100%;
   max-block-size: 100%;
 }
 
@@ -298,22 +310,17 @@
   display: grid;
   justify-content: center;
   align-content: center;
-  padding-inline: var(--padding-M, 20px);
+  padding-inline: var(--spacing-m, 20px);
   /* для декор уголка */
-  padding-block: var(--padding-M, 20px);
-  background-color: var(--page-bg-color, rgba(0, 0, 40, 1));
-  block-size: var(--full-viewport-height, 100vh);
+  padding-block: var(--spacing-m, 20px);
+  block-size: 100vh;
   min-block-size: 768px;
 }
 
 .footer__title {
-  color: var(--main-title-color, rgba(219, 0, 255, 1));
-  /*чтобы шрифт адаптировался */
-  font-weight: var(--bold-font-weight, 700);
-  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-  line-height: var(--title-line-height, 83%);
-  text-shadow: 2px 2px 0 var(--accent-color, rgba(255, 0, 112, 1));
+  text-shadow: 2px 2px 0 var(--accent-color, rgba(255, 0, 112, 1)); /*!!!*/
 }
+ 
 
 /*стили для планшетов 768*1024*/
 
@@ -331,8 +338,9 @@
     flex-direction: column;
   }
 
-  .header__title {
-    font-size: clamp(7.25rem, 6.7836rem + 1.4925vw, 7.5rem);
+  .title-accent {
+    font-size: var(--font-size-l, 120px);
+    /*адаптация шрифта заголовка в header/footer */
   }
 
   .header__subtitle {
@@ -361,34 +369,34 @@
 
 @media (max-width: 500px) {
   .header {
-    padding-inline: var(--padding-S, 10px);
-    padding-block: var(--padding-S, 10px);
+    padding-inline: var(--spacing-s, 10px);
+    padding-block: var(--spacing-s, 10px);
     min-block-size: 668px;
   }
 
   /*REC*/
   .header__decorative-text {
-    top: var(--decoration-cordinate, 10px);
-    right: calc(
-      var(--decoration-cordinate, 10px) + var(--dot-decorative-size, 9px)
-    );
+    top: 10px;
+    right: 19px;
   }
 
   /* правый верхний уголок */
   .decorated-zone::before {
-    top: var(--decoration-cordinate, 10px);
-    right: var(--decoration-cordinate, 10px);
+    top: 10px;
+    right: 10px;
   }
 
   /* левый нижний уголок */
   .decorated-zone::after {
-    bottom: var(--decoration-cordinate, 10px);
-    left: var(--decoration-cordinate, 10px);
+    bottom: 10px;
+    left: 10px;
   }
 
   .header__title {
-    margin-inline-start: 0;
-    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+    margin-inline-start: 0;}
+
+  .title-accent {
+    font-size: var(--font-size-m, 116px);
   }
 
   .header__subtitle {
@@ -396,9 +404,9 @@
   }
 
   .content {
-    gap: var(--x-large-gap, 50px);
-    padding-inline: var(--padding-S, 10px);
-    padding-block: var(--padding-ML, 40px);
+    gap: var(--grid-gap-xl, 50px);
+    padding-inline: var(--spacing-s, 10px);
+    padding-block: var(--spacing-l, 40px);
   }
 
   .content__section.section-primary {
@@ -419,13 +427,13 @@
   }
 
   .section-images {
-    gap: var(--small-gap, 10px);
+    gap: var(--grid-gap-s, 10px);
   }
 
   .images-list {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: var(--small-gap, 10px);
+    gap: var(--grid-gap-s, 10px);
   }
 
   /*более специфичный селектор, чтобы не перечислять все :nth-child*/
@@ -435,12 +443,9 @@
   }
 
   .footer {
-    padding-inline: var(--padding-S, 10px);
-    padding-block: var(--padding-S, 10px);
+    padding-inline: var(--spacing-s, 10px);
+    padding-block: var(--spacing-s, 10px);
     min-block-size: 668px;
   }
 
-  .footer__title {
-    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
-  }
 }
