@@ -104,10 +104,10 @@
   color: var(--button-color, rgba(255, 0, 112, 1));
   text-transform: lowercase;
   background-color: transparent;
+  cursor: pointer;
   inline-size: 70px;
   /*min-inline-size увеличивает кнопку*/
   min-block-size: 26px;
-  cursor: pointer;
 }
 
 .header__theme-menu-button_active {
@@ -318,9 +318,8 @@
 }
 
 .footer__title {
-  text-shadow: 2px 2px 0 var(--accent-color, rgba(255, 0, 112, 1)); /*!!!*/
+  text-shadow: 2px 2px 0 var(--accent-color, rgba(255, 0, 112, 1));
 }
- 
 
 /*стили для планшетов 768*1024*/
 
@@ -393,7 +392,8 @@
   }
 
   .header__title {
-    margin-inline-start: 0;}
+    margin-inline-start: 0;
+  }
 
   .title-accent {
     font-size: var(--font-size-m, 116px);
@@ -447,5 +447,4 @@
     padding-block: var(--spacing-s, 10px);
     min-block-size: 668px;
   }
-
 }
